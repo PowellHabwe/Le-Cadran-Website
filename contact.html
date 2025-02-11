@@ -39,9 +39,10 @@
 <body class="index-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+    <div
+      class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <a href="./index.html" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">Le Cadran Africa</h1>
@@ -49,17 +50,16 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="./index.html" class="active">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./services.html">Services/Products</a></li>
+          <li><a href="./pricing.html">Pricing</a></li>
+          <li><a href="./contact.html">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="#contact">Get Started</a>
+      <a class="btn-getstarted" href="./contact.html">Get Started</a>
 
     </div>
   </header>
@@ -136,7 +136,35 @@
   
                    <p>Give us a call, or send an email. We look forward to connecting with you</p>
   
-  
+                   <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row gy-4">
+    
+                      <div class="col-md-6">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                      </div>
+    
+                      <div class="col-md-6 ">
+                        <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                      </div>
+    
+                      <div class="col-12">
+                        <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                      </div>
+    
+                      <div class="col-12">
+                        <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                      </div>
+    
+                      <div class="col-12 text-center">
+                        <div class="loading">Loading</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Your message has been sent. Thank you!</div>
+    
+                        <button type="submit" class="btn">Send Message</button>
+                      </div>
+    
+                    </div>
+                  </form>
   
               </div>
             </div>
@@ -262,8 +290,26 @@
           <h4>Our Products</h4>
           <ul>
             <li><a href="#">Call Centre Software</a></li>
-            <li><a href="#">Debt Collection Software</a></li>
-            <li><a href="#">Cybersecurity Software</a></li>
+            <li><a href="#">Debt Collection/Loan Management Software</a></li>
+            <li><a href="#">Provision of Point of Sale systems(POS)</a></li>
+            <li><a href="#">Bulk Messaging Solutions.</a></li>
+            <li><a href="#">Customer Interactions Tracking.</a></li>
+            <li><a href="#">Web/System Design.</a></li>
+
+
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Products</h4>
+          <ul>
+
+            <li><a href="#">Development of Intergrable Customer
+              Relations Management (CRM) Systems.</a></li>
+            <li><a href="#">Designing & Branding Solutions.</a></li>
+            <li><a href="#">Supply and Delivery of Computers & Accessories.</a></li>
+            <li><a href="#">Supply, Delivery & Installation of CCTV Cameras.</a></li>
+
           </ul>
         </div>
 
