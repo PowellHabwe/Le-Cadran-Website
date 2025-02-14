@@ -1303,11 +1303,11 @@ section,
   color: #edb86e;
 }
 
-.features-cards .feature-box.blue {
+.features-cards .feature-box.#0d83fd {
   background-color: #deedfd;
 }
 
-.features-cards .feature-box.blue i {
+.features-cards .feature-box.#0d83fd i {
   color: #20a5f8;
 }
 
@@ -1619,7 +1619,7 @@ section,
 }
 
 .testimonials .testimonial-item .stars i {
-  color: #ffc107;
+  color: #0d83fd;
   margin: 0 1px;
 }
 
