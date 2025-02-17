@@ -3,8 +3,24 @@
 * Template URL: https://bootstrapmade.com/Le Cadran Africa-bootstrap-landing-page-template/
 * Updated: Nov 12 2024 with Bootstrap v5.3.3
 * Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
+* License: https://bootstrapmade.com/license
 */
+
+
+// function sendMail() {
+
+//   let parms = {
+//     name : document.getElementsByName('name').value,
+//     email : document.getElementsByName('email').value,
+//     subject : document.getElementsByName('subject').value,
+//     message : document.getElementsByName('message').value,
+//   }
+
+//   emailjs.send("service_knjyulb","template_tfrsovk", parms).then(alert("Email sent!!"))
+  
+// }
+
+
 
 (function() {
   "use strict";
