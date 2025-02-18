@@ -29,6 +29,23 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <style>
+    .price-display {
+        display: inline-block;
+        margin-left: 4px;
+    }
+    
+    .usd-price {
+        color: #f7f7f7;
+        font-weight: 500;
+    }
+    
+    .d-none {
+        display: none !important;
+    }
+    </style>
+
+
   <!-- =======================================================
   * Template Name: Le Cadran Africa
   * Template URL: https://bootstrapmade.com/Le Cadran Africa-bootstrap-landing-page-template/
@@ -159,100 +176,82 @@
 
       <!-- Pricing Section -->
       <section id="pricing" class="pricing section light-background">
-
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>Pricing</h2>
-          <!-- <p></p> -->
-        </div><!-- End Section Title -->
+        </div>
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
-
           <div class="row g-4 justify-content-center">
-
-
-            <!-- Standard Plan -->
+            <!-- Call Center Pricing -->
             <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
               <div class="pricing-card popular">
                 <div class="popular-badge">Call Center Pricing</div>
-                <!-- <div class="price">
-                  <span class="currency">$</span>
-                  <span class="amount">19.9</span>
-                  <span class="period">/ month</span>
-                </div> -->
-                <!-- <p class="description">What do you get with standard?</p> -->
-
                 <h4>Pricing Plans:</h4>
                 <ul class="features-list">
                   <li>
-
                     <i class="bi bi-check-circle-fill"></i>
-                    0 - 10 Agents (Ksh 4000 per agent)
+                    0 - 10 Agents
+                    <span class="price-display">
+                      <span class="usd-price">USD loading...</span>
+                      <span class="kes-price d-none">(KES 4000)</span> per agent
+                    </span>
                   </li>
                   <li>
                     <i class="bi bi-check-circle-fill"></i>
-                    11 - 30 Agents (Ksh 3000 per agent)
+                    11 - 30 Agents
+                    <span class="price-display">
+                      <span class="usd-price">USD loading...</span>
+                      <span class="kes-price d-none">(KES 3000)</span> per agent
+                    </span>
                   </li>
                   <li>
                     <i class="bi bi-check-circle-fill"></i>
-                    31 - 50 Agents (Ksh 2000 per agent)
+                    31 - 50 Agents
+                    <span class="price-display">
+                      <span class="usd-price">USD loading...</span>
+                      <span class="kes-price d-none">(KES 2000)</span> per agent
+                    </span>
                   </li>
                   <li>
                     <i class="bi bi-check-circle-fill"></i>
-                    51 and above Agents (Ksh 1500 per agent)
+                    51 and above Agents
+                    <span class="price-display">
+                      <span class="usd-price">USD loading...</span>
+                      <span class="kes-price d-none">(KES 1500)</span> per agent
+                    </span>
                   </li>
-
                   <li>
                     <i class="bi bi-check-circle-fill"></i>
-                    Airtime purchases are billed seperately
+                    Airtime purchases are billed separately
                   </li>
                   <li>
                     <i class="bi bi-check-circle-fill"></i>
                     Omnichannels included for free
                   </li>
                 </ul>
-
               </div>
-
-
             </div>
 
+            <!-- Bulk SMS Pricing -->
             <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
               <div class="pricing-card popular">
                 <div class="popular-badge">Bulk SMS Pricing</div>
-                <!-- <h3>Pricing Plans</h3> -->
-                <!-- <div class="price">
-                  <span class="currency">$</span>
-                  <span class="amount">19.9</span>
-                  <span class="period">/ month</span>
-                </div> -->
-                <!-- <p class="description">What do you get with standard?</p> -->
-
                 <h4>Pricing Plans:</h4>
                 <ul class="features-list">
                   <li>
-
                     <i class="bi bi-check-circle-fill"></i>
-                    Ksh 0.5 Per SMS
+                    <span class="price-display">
+                      <span class="usd-price">USD loading...</span>
+                      <span class="kes-price d-none">(KES 0.5)</span> Per SMS
+                    </span>
                   </li>
                 </ul>
-
               </div>
-
-
             </div>
-
-
           </div>
-
         </div>
-
-      </section><!-- /Pricing Section -->
-
-
->
-
-
+      </section>
 
 
       <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -482,6 +481,68 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
+
+
+
+
+
+
+
+  <script>
+    // Function to extract numeric value from KES price string
+    function extractNumber(priceString) {
+      return parseFloat(priceString.match(/[\d.]+/)[0]);
+    }
+
+    // Function to fetch exchange rate and update prices
+    async function updatePrices() {
+      try {
+        // Fetch current exchange rate from API
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/KES');
+        const data = await response.json();
+        const kesToUsdRate = data.rates.USD;
+
+        // Get all KES price elements
+        const kesPriceElements = document.querySelectorAll('.kes-price');
+        const usdPriceElements = document.querySelectorAll('.usd-price');
+
+        // Update each price
+        kesPriceElements.forEach((kesElement, index) => {
+          const kesAmount = extractNumber(kesElement.textContent);
+          const usdAmount = (kesAmount * kesToUsdRate);
+
+          // Format based on the amount - use 4 decimal places for SMS pricing (small amounts)
+          const formattedAmount = usdAmount < 1 ? usdAmount.toFixed(4) : usdAmount.toFixed(2);
+          usdPriceElements[index].textContent = `USD ${formattedAmount}`;
+        });
+      } catch (error) {
+        console.error('Error fetching exchange rate:', error);
+        document.querySelectorAll('.usd-price').forEach(el => {
+          el.textContent = 'USD rate unavailable';
+        });
+      }
+    }
+
+    // Update prices immediately and then every hour
+    document.addEventListener('DOMContentLoaded', () => {
+      updatePrices();
+      setInterval(updatePrices, 3600000); // 1 hour in milliseconds
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -489,6 +550,23 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
